@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Homepage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .post {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .user-info img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .post-content {
+            margin-bottom: 10px;
+        }
+        .comment {
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+        .comment .user-info {
+            margin-right: 10px;
+        }
+        .comment img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% for post in posts %}
+            <div class="post">
+                <div class="user-info">
+                    <img src="https://picsum.photos/seed/{{ post.userId }}/40" alt="User Avatar">
+                    <span>{{ post.author }}</span> <!-- Display user name -->
+                </div>
+                <h2>{{ post.title }}</h2>
+                <p class="post-content">{{ post.body }}</p>
+                {% for comment in post.comments %}
+                    <div class="comment">
+                        <div class="user-info"> <!-- Display user info -->
+                            <img src="https://picsum.photos/seed/{{comment.user_id}}/30" alt="User Avatar">
+                            <p><strong>{{ comment.commenter }}</strong></p>
+                            <p  style="font-size: 14px; color: grey;">&nbsp;&nbsp;&nbsp;{{comment.email}}</p>
+                        </div>
+                        <div class="comment-content">
+                            <!-- Extract username from user email -->
+                            <p>{{ comment.name }}</p>
+                            <p><i>{{ comment.body }}</i></p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
