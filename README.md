@@ -36,7 +36,7 @@ To activate virtual environment,
 
 **Step 3**
 
-Install the required packages using
+Switch to the folder containing requirements.txt file. Install the required packages using
     
     pip install -r requirements.txt
 
