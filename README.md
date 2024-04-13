@@ -15,28 +15,34 @@ Create a virtual environment and activate it.
 **Windows: Command Prompt Commands to be run in Code Folder**
     
 To create virtual environment,
+    
     virtualenv myvirtualenvname
     
 To activate virtual environment,
+    
     .\myvirtualenvname\Scripts\activate
 
 
 **Linux Based Systems/ Mac System: Terminal Commands to be run in Code Folder**
     
 To create virtual environment,
+    
     python3 -m venv myvirtualenvname
     
 To activate virtual environment,
+    
     source myvirtualenvname/bin/activate
 
 
 **Step:3**
 
 Install the required packages using
+    
     pip install -r requirements.txt
 
 
 **Step:4**
 
 Run the application using the command
-**python app.py**
+
+    python app.py
