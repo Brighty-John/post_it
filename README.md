@@ -1,14 +1,14 @@
 # post_it
 This is a basic Flask application for social media homepage featuring posts along with their corresponding comments.
 
-**Step:1**
+**Step 1**
 
 Go to the directory/folder where you want to place the code in Terminal/Command Prompt. 
 
     git clone https://github.com/Brighty-John/post_it.git
 
 
-**Step:2**
+**Step 2**
 
 Create a virtual environment and activate it.
 
@@ -34,14 +34,14 @@ To activate virtual environment,
     source myvirtualenvname/bin/activate
 
 
-**Step:3**
+**Step 3**
 
 Install the required packages using
     
     pip install -r requirements.txt
 
 
-**Step:4**
+**Step 4**
 
 Run the application using the command
 
