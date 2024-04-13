@@ -31,7 +31,7 @@ def filter_posts_by_user(user_id: str):
 
 
 @app.route('/')
-@app.route('/home/')
+@app.route('/home')
 @app.route('/home/<post_id>')
 def post_details(post_id=None):
     """
@@ -54,7 +54,6 @@ def post_details(post_id=None):
     # Fetch comments for each post and add them to the post object
     for post in posts:
         post['author'] = get_email_by_id(post["userId"]).split('@')[0].replace('_', ' ').replace('.', ' ')
-        # post['author'] = users[post["id"] - 1].split('@')[0].replace('_', ' ').replace('.', ' ')
         post['comments'] = get_comments_for_post(post["id"])
 
     return render_template('homepage.html', posts=posts, user_mapping=users)

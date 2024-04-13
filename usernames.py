@@ -160,7 +160,7 @@ users = {'Eliseo@gardner.biz': 1, 'Jayne_Kuhic@sydney.com': 2, 'Nikita@garfield.
          'Wilburn_Labadie@araceli.name': 499, 'Emma@joanny.ca': 500}
 
 
-# # The below logic has been used to fetching all user emails from the given data
+# # The below logic has been used to fetch all user emails from the given dataset of comments
 #
 # import requests
 #
