@@ -26,7 +26,7 @@ def filter_posts_by_user(user_id: str):
     for post in filtered_posts:
         post["author"] = author
         post['comments'] = get_comments_for_post(post["id"])
-    return render_template('specific_posts.html', posts=filtered_posts, user_mapping=users)
+    return render_template('specific_posts.html', posts=filtered_posts)
 
 
 @app.route('/', methods=['GET'])
