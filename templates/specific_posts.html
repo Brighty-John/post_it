@@ -12,19 +12,6 @@
             padding: 0;
             background-color: #f4f4f4;
         }
-        #load-more-btn {
-            display: block;
-            margin: 20px auto; /* Center the button horizontally */
-            padding: 10px 20px;
-            background-color: #4CAF50; /* Green color */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        #load-more-btn:hover {
-            background-color: #45a049; /* Darker green color on hover */
-        }
         .container {
             max-width: 800px;
             margin: 20px auto;
@@ -74,32 +61,5 @@
     <div class="container" id="post-container">
         {% include '_posts.html' %}
     </div>
-
-    <script>
-        var nextPage = 2; // Initialize nextPage to 2 since we've already loaded the first page
-
-        window.onscroll = function() {
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-                loadMore();
-            }
-        };
-
-        function loadMore() {
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        var postsContainer = document.getElementById('post-container');
-                        postsContainer.innerHTML += xhr.responseText;
-                        nextPage++; // Increment the page number for the next load
-                    } else {
-                        console.error('Error loading more posts');
-                    }
-                }
-            };
-            xhr.open('GET', '/?page=' + nextPage + '&ajax=true', true);
-            xhr.send();
-        }
-    </script>
 </body>
 </html>
