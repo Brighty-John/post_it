@@ -7,7 +7,7 @@ from usernames import users
 app = Flask(__name__)
 
 
-@app.route('/posts/user/<user_id>')
+@app.route('/user/<user_id>')
 def filter_posts_by_user(user_id: str):
     """
         Filter posts by a specific user ID and retrieve associated comments.
@@ -31,8 +31,7 @@ def filter_posts_by_user(user_id: str):
 
 
 @app.route('/')
-@app.route('/home')
-@app.route('/home/<post_id>')
+@app.route('/<post_id>')
 def post_details(post_id=None):
     """
     Retrieve details of a specific post or all posts if no post_id is provided.
