@@ -8,13 +8,12 @@
         <p class="post-content">{{ post.body }}</p>
         {% for comment in post.comments %}
             <div class="comment">
-                <div class="user-info"> <!-- Display user info -->
+                <div class="user-info">
                     <img src="https://picsum.photos/seed/{{comment.user_id}}/30" alt="User Avatar">
                     <p><strong>{{ comment.commenter }}</strong></p>
                     <p  style="font-size: 14px; color: grey;">&nbsp;&nbsp;&nbsp;{{comment.email}}</p>
                 </div>
                 <div class="comment-content">
-                    <!-- Extract username from user email -->
                     <p>{{ comment.name }}</p>
                     <p><i>{{ comment.body }}</i></p>
                 </div>
