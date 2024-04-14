@@ -34,14 +34,16 @@ def home():
     page = request.args.get('page', default=1, type=int)
     resource_url = 'https://jsonplaceholder.typicode.com/posts/{}'.format(page)
     paginated_posts = get_data_from_url(resource_url)
+    if paginated_posts:
+        # Ensure that paginated_posts is a list even if it contains just one post
+        paginated_posts = [paginated_posts] if isinstance(paginated_posts, dict) else paginated_posts
 
-    # Ensure that paginated_posts is a list even if it contains just one post
-    paginated_posts = [paginated_posts] if isinstance(paginated_posts, dict) else paginated_posts
+        for post in paginated_posts:
+            post['author'] = get_email_by_id(post["userId"]).split('@')[0].replace('_', ' ').replace('.', ' ')
+            post['comments'] = get_comments_for_post(post["id"])
 
-    for post in paginated_posts:
-        post['author'] = get_email_by_id(post["userId"]).split('@')[0].replace('_', ' ').replace('.', ' ')
-        post['comments'] = get_comments_for_post(post["id"])
-
+    if not paginated_posts:
+        return ""
     if request.args.get('ajax'):
         return render_template('_posts.html', posts=paginated_posts)
     else:

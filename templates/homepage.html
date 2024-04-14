@@ -12,19 +12,6 @@
             padding: 0;
             background-color: #f4f4f4;
         }
-        #load-more-btn {
-            display: block;
-            margin: 20px auto; /* Center the button horizontally */
-            padding: 10px 20px;
-            background-color: #4CAF50; /* Green color */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        #load-more-btn:hover {
-            background-color: #45a049; /* Darker green color on hover */
-        }
         .container {
             max-width: 800px;
             margin: 20px auto;
@@ -74,32 +61,44 @@
     <div class="container" id="post-container">
         {% include '_posts.html' %}
     </div>
-
     <script>
-        var nextPage = 2; // Initialize nextPage to 2 since we've already loaded the first page
+        var nextPost = 2;
+        var loading = false;
+        var all_posts_loaded = false;
 
         window.onscroll = function() {
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+            if (!loading && !all_posts_loaded && (window.innerHeight + window.scrollY) >= 0.75 * document.body.offsetHeight) {
                 loadMore();
             }
         };
 
         function loadMore() {
+            if (all_posts_loaded) {
+        return; // Stop function execution
+    }
+
+            loading = true;
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.readyState === XMLHttpRequest.DONE && !all_posts_loaded) {
+                    loading = false;
                     if (xhr.status === 200) {
                         var postsContainer = document.getElementById('post-container');
-                        postsContainer.innerHTML += xhr.responseText;
-                        nextPage++; // Increment the page number for the next load
+                        var responseData = xhr.responseText.trim(); // Trim whitespace
+                        if (responseData !== '') { // Check if response is not empty
+                            postsContainer.innerHTML += responseData;
+                            nextPost += 1;
+                        } else {
+                            all_posts_loaded = true;
+                            console.log('No more posts to load');
+                        }
                     } else {
                         console.error('Error loading more posts');
                     }
                 }
             };
-            xhr.open('GET', '/?page=' + nextPage + '&ajax=true', true);
-            xhr.send();
-        }
+            xhr.open('GET', '/?page=' + nextPost + '&ajax=true', true);
+            xhr.send();}
     </script>
 </body>
 </html>
