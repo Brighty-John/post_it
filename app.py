@@ -44,12 +44,12 @@ def home():
         for post in paginated_posts:
             post['author'] = get_email_by_id(post["userId"]).split('@')[0].replace('_', ' ').replace('.', ' ')
             post['comments'] = get_comments_for_post(post["id"])
-            
+
+        return render_template('_posts.html', posts=paginated_posts) if request.args.get('ajax') else \
+            render_template('homepage.html', posts=paginated_posts)
+
     else:
         return ""
-
-    return render_template('_posts.html', posts=paginated_posts) if request.args.get('ajax') else \
-        render_template('homepage.html', posts=paginated_posts)
 
 
 @app.route('/post/<post_id>')
