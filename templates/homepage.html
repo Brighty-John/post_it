@@ -66,6 +66,7 @@
         var loading = false;
         var all_posts_loaded = false;
 
+        // make next call, if there is no call in progress, all posts are not loaded, once 75% of the window is scrolled
         window.onscroll = function() {
             if (!loading && !all_posts_loaded && (window.innerHeight + window.scrollY) >= 0.75 * document.body.offsetHeight) {
                 loadMore();
@@ -74,7 +75,7 @@
 
         function loadMore() {
             if (all_posts_loaded) {
-        return; // Stop function execution
+        return; // Stop function execution if all posts are loaded
     }
 
             loading = true;
